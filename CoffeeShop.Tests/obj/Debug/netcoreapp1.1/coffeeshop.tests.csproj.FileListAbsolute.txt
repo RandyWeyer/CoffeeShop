@@ -1,0 +1,13 @@
+/Users/Guest/Desktop/CoffeeShop/CoffeeShop.Tests/bin/Debug/netcoreapp1.1/coffeeshop.tests.deps.json
+/Users/Guest/Desktop/CoffeeShop/CoffeeShop.Tests/bin/Debug/netcoreapp1.1/coffeeshop.tests.runtimeconfig.json
+/Users/Guest/Desktop/CoffeeShop/CoffeeShop.Tests/bin/Debug/netcoreapp1.1/coffeeshop.tests.runtimeconfig.dev.json
+/Users/Guest/Desktop/CoffeeShop/CoffeeShop.Tests/obj/Debug/netcoreapp1.1/coffeeshop.tests.AssemblyInfo.cs
+/Users/Guest/Desktop/CoffeeShop/CoffeeShop.Tests/bin/Debug/netcoreapp1.1/Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+/Users/Guest/Desktop/CoffeeShop/CoffeeShop.Tests/bin/Debug/netcoreapp1.1/Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+/Users/Guest/Desktop/CoffeeShop/CoffeeShop.Tests/bin/Debug/netcoreapp1.1/Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+/Users/Guest/Desktop/CoffeeShop/CoffeeShop.Tests/bin/Debug/netcoreapp1.1/coffeeshop.tests.dll
+/Users/Guest/Desktop/CoffeeShop/CoffeeShop.Tests/bin/Debug/netcoreapp1.1/coffeeshop.tests.pdb
+/Users/Guest/Desktop/CoffeeShop/CoffeeShop.Tests/bin/Debug/netcoreapp1.1/coffeeshop.dll
+/Users/Guest/Desktop/CoffeeShop/CoffeeShop.Tests/bin/Debug/netcoreapp1.1/coffeeshop.pdb
+/Users/Guest/Desktop/CoffeeShop/CoffeeShop.Tests/obj/Debug/netcoreapp1.1/coffeeshop.tests.dll
+/Users/Guest/Desktop/CoffeeShop/CoffeeShop.Tests/obj/Debug/netcoreapp1.1/coffeeshop.tests.pdb
