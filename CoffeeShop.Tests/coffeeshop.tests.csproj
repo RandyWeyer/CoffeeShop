@@ -6,9 +6,12 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="1.1.11" />
     <PackageReference Include="MSTest.TestFramework" Version="1.1.11" />
-    <PackageReference Include="MySqlConnector" Version="0.40.3" />
+    <PackageReference Include="MySqlConnector" Version="0.42.3" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CoffeeShop\coffeeshop.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="1.0.0-msbuild2-final" />
   </ItemGroup>
 </Project>

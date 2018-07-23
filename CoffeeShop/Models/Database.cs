@@ -1,8 +1,8 @@
 using System;
 using MySql.Data.MySqlClient;
-using Coffeeshop;
+using CoffeeShop;
 
-namespace Coffeeshop.Models
+namespace CoffeeShop.Models
 {
     public class DB
     {

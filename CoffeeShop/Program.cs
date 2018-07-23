@@ -1,7 +1,7 @@
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 
-namespace Coffeeshop
+namespace CoffeeShop
 {
     public class Program
     {
