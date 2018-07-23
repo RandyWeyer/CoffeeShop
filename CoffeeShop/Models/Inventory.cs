@@ -9,13 +9,13 @@ namespace CoffeeShop.Models
   {
     private int _id;
     private string _item;
-    private int _amount;
+    private int _itemAmount;
 
-    public Inventory (string item, int amount, int id = 0)
+    public Inventory (string item, int itemAmount, int id = 0)
     {
       _id = id;
       _item = item;
-      _amount = amount;
+      _itemAmount = itemAmount;
     }
     public int GetId()
     {
@@ -25,9 +25,9 @@ namespace CoffeeShop.Models
     {
       return _item;
     }
-    public int GetAmount()
+    public int GetItemAmount()
     {
-      return _amount;
+      return _itemAmount;
     }
     public override bool Equals(System.Object otherInventory)
     {
@@ -75,8 +75,8 @@ namespace CoffeeShop.Models
       {
         int inventoryId = rdr.GetInt32(0);
         string item = rdr.GetString(1);
-        int amount = rdr.GetInt32(2);
-        Inventory newItem = new Inventory(item, amount, inventoryId);
+        int itemAmount = rdr.GetInt32(2);
+        Inventory newItem = new Inventory(item, itemAmount, inventoryId);
         allItems.Add(newItem);
       }
       conn.Close();
@@ -101,15 +101,15 @@ namespace CoffeeShop.Models
       var rdr = cmd.ExecuteReader() as MySqlDataReader;
       int inventoryId = 0;
       string item = "";
-      int amount = 0;
+      int itemAmount = 0;
 
       while(rdr.Read())
       {
         inventoryId = rdr.GetInt32(0);
         item = rdr.GetString(1);
-        amount = rdr.GetInt32(2);
+        itemAmount = rdr.GetInt32(2);
       }
-      Inventory newItem = new Inventory(item, amount, inventoryId);
+      Inventory newItem = new Inventory(item, itemAmount, inventoryId);
       conn.Close();
       if (conn != null)
       {
