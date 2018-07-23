@@ -27,5 +27,5 @@ namespace CoffeeShop.Controllers
       return View(Drink.GetAll());
     }
 
-    
+
   }
