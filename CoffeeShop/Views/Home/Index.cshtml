@@ -3,7 +3,34 @@
   Layout = "_Layout";
 }
 
-        <div class="jumbotron">
-          <h1>Coffee Shop</h1>
-          <h4>Organize Stock</h4>
-        </div>
+<div class="jumbotron">
+  <h1>Coffee Shop</h1>
+  <h4>Organize Stock</h4>
+</div>
+
+<div class="container">
+  <div class="row">
+
+    <form name="coffee-order">
+    <div class="col-lg-6">
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+      <label class="btn btn-outline-dark active">
+        <input type="radio" name="options" id="ounce-8" autocomplete="off" checked> 8 Oz.
+      </label>
+      <label class="btn btn-outline-dark">
+        <input type="radio" name="options" id="ounce-12" autocomplete="off"> 12 Oz.
+      </label>
+      <label class="btn btn-outline-dark">
+        <input type="radio" name="options" id="ounce-16" autocomplete="off"> 16 Oz.
+      </label>
+    </div>
+  </div>
+  <div class="col-lg-5">
+    <img src="~/img/coffee-sizes-612x612.jpg" alt="Coffee Sizes">
+  </div>
+    <!-- End of Form -->
+  </form>
+    <!-- End of Row -->
+  </div>
+  <!-- End of Container -->
+</div>
