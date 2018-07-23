@@ -186,5 +186,30 @@ namespace CoffeeShop.Models
         conn.Dispose();
       }
     }
+
+    public void AddInventory(Inventory newInventory)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"INSERT INTO ingredients (drink_id, inventory_id) VALUES (@DrinkId, @InventoryId);";
+
+      MySqlParameter drinkId = new MySqlParameter();
+      drinkId.ParameterName = "@DrinkId";
+      drinkId.Value = _id;
+      cmd.Parameters.Add(drinkId);
+
+      MySqlParameter inventoryId = new MySqlParameter();
+      inventoryId.ParameterName = "@InventoryId";
+      inventoryId.Value = newInventory.GetId();
+      cmd.Parameters.Add(inventoryId);
+
+      cmd.ExecuteNonQuery();
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+    }
   }
 }

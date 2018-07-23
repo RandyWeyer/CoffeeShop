@@ -48,12 +48,17 @@ namespace CoffeeShop.Models
       conn.Open();
 
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"INSERT INTO inventories (item) VALUES (@item);";
+      cmd.CommandText = @"INSERT INTO inventories (item, item_amount) VALUES (@item, @item_amount);";
 
       MySqlParameter item = new MySqlParameter();
       item.ParameterName = "@item";
       item.Value = this._item;
       cmd.Parameters.Add(item);
+
+      MySqlParameter itemAmount = new MySqlParameter();
+      itemAmount.ParameterName = "@item_amount";
+      itemAmount.Value = this._itemAmount;
+      cmd.Parameters.Add(itemAmount);
 
       cmd.ExecuteNonQuery();
       _id = (int) cmd.LastInsertedId;
@@ -124,6 +129,31 @@ namespace CoffeeShop.Models
       conn.Open();
       var cmd = conn.CreateCommand() as MySqlCommand;
       cmd.CommandText = @"DELETE FROM inventories;";
+      cmd.ExecuteNonQuery();
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+    }
+
+    public void AddDrink(Drink newDrink)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"INSERT INTO ingredients (drink_id, inventory_id) VALUES (@DrinkId, @InventoryId);";
+
+      MySqlParameter drinkId = new MySqlParameter();
+      drinkId.ParameterName = "@DrinkId";
+      drinkId.Value = newDrink.GetId();
+      cmd.Parameters.Add(drinkId);
+
+      MySqlParameter inventoryId = new MySqlParameter();
+      inventoryId.ParameterName = "@InventoryId";
+      inventoryId.Value = _id;
+      cmd.Parameters.Add(inventoryId);
+
       cmd.ExecuteNonQuery();
       conn.Close();
       if (conn != null)
