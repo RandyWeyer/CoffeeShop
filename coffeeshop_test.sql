@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jul 23, 2018 at 08:47 PM
+-- Generation Time: Jul 23, 2018 at 10:29 PM
 -- Server version: 5.6.35
 -- PHP Version: 7.0.15
 
@@ -30,22 +30,21 @@ USE `coffeeshop_test`;
 
 CREATE TABLE `drinks` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `coffee` int(11) NOT NULL,
-  `milk` int(11) NOT NULL
+  `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `drinks_inventories`
+-- Table structure for table `ingredients`
 --
 
-CREATE TABLE `drinks_inventories` (
+CREATE TABLE `ingredients` (
   `id` int(11) NOT NULL,
   `drink_id` int(11) NOT NULL,
-  `inventory_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `inventory_id` int(11) NOT NULL,
+  `amount` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- --------------------------------------------------------
 
@@ -55,8 +54,8 @@ CREATE TABLE `drinks_inventories` (
 
 CREATE TABLE `inventories` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `amount` int(11) NOT NULL
+  `item` varchar(255) NOT NULL,
+  `item_amount` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -70,9 +69,9 @@ ALTER TABLE `drinks`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `drinks_inventories`
+-- Indexes for table `ingredients`
 --
-ALTER TABLE `drinks_inventories`
+ALTER TABLE `ingredients`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -91,9 +90,9 @@ ALTER TABLE `inventories`
 ALTER TABLE `drinks`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `drinks_inventories`
+-- AUTO_INCREMENT for table `ingredients`
 --
-ALTER TABLE `drinks_inventories`
+ALTER TABLE `ingredients`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `inventories`
