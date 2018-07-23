@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using Coffeeshop.Models;
+using CoffeeShop.Models;
 using System;
 
-namespace Coffeeshop.Controllers
+namespace CoffeeShop.Controllers
 {
     public class HomeController : Controller
     {
