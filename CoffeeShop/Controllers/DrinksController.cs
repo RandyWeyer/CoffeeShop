@@ -27,5 +27,11 @@ namespace CoffeeShop.Controllers
     {
       return View(Drink.GetAll());
     }
+    [HttpPost("/drinks/delete")]
+   public ActionResult DeleteOneDrink(int drinkId)
+   {
+     Drink.Find(drinkId).Delete();
+     return RedirectToAction("Index");
+   }
   }
 }

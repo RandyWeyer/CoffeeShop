@@ -164,5 +164,24 @@ namespace CoffeeShop.Models
         conn.Dispose();
       }
     }
+    public void Delete()
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText  = @"DELETE FROM inventories WHERE id = @ItemId;";
+      MySqlParameter itemIdParameter = new MySqlParameter();
+      itemIdParameter.ParameterName = "@ItemId";
+      itemIdParameter.Value = this.GetId();
+      cmd.Parameters.Add(itemIdParameter);
+
+      cmd.ExecuteNonQuery();
+
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+    }
   }
 }

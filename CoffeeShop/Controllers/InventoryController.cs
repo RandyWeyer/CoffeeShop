@@ -26,5 +26,11 @@ namespace CoffeeShop.Controllers
     {
       return View(Inventory.GetAll());
     }
+    [HttpPost("/inventory/delete")]
+   public ActionResult DeleteOneItem(int itemId)
+   {
+     Inventory.Find(itemId).Delete();
+     return RedirectToAction("Index");
+   }
   }
 }

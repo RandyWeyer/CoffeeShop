@@ -1,7 +1,9 @@
 @{
   Layout = "_Layout";
 }
-
+<head>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
 <h1>Our drinks:</h1>
 <hr />
 
@@ -10,7 +12,22 @@
   <ol>
     @foreach (var drink in Model)
     {
-      <li>@drink.GetName()</li>
-    }
-  </ol>
+      <li>@drink.GetName() |
+      <a href="/drinks" class="deleteAction" id="@drink.GetId()">Delete</a></li>
+ }
+ </ol>
 }
+ <form id="secret-form" action="/drinks/delete" method="post">
+   <input type="hidden" name="drinkId" value="">
+ </form>
+
+ <script type="text/javascript">
+   $("#secret-form").hide();
+   $(document).ready(function() {
+     $("a.deleteAction").click(function(event) {
+       event.preventDefault();
+       $("form#secret-form input").val(this.id);
+       $("form#secret-form").submit();
+     })
+   })
+ </script>
