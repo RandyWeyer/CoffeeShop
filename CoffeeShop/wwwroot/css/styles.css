@@ -1,5 +1,5 @@
 .container-padding {
-  margin: 30px;
+  margin: 2px;
 }
 .footer {
   position: absolute;
@@ -14,4 +14,18 @@
 nav {
   display: flex;
   list-style: none;
+}
+.jumbotron{
+  background-image: url(../img/seattle.jpg);
+
+  background-size: 50%;
+
+
+
+  color: white;
+  text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
 }
