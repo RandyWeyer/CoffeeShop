@@ -79,6 +79,5 @@ namespace CoffeeShop.Models
         conn.Dispose();
       }
     }
-
   }
 }
