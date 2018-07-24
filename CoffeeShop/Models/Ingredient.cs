@@ -82,8 +82,6 @@ namespace CoffeeShop.Models
         conn.Dispose();
       }
     }
-<<<<<<< HEAD
-
     public void addAmount(int newAmount)
     {
       MySqlConnection conn = DB.Connection();
@@ -108,7 +106,5 @@ namespace CoffeeShop.Models
       cmd.Parameters.Add(drink_id);
 
     }
-=======
->>>>>>> inventorycont
   }
 }
