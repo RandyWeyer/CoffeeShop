@@ -5,7 +5,6 @@ using System;
 
 namespace CoffeeShop.Controllers
 {
-
   public class DrinksController : Controller
   {
     [HttpGet("/drinks")]
