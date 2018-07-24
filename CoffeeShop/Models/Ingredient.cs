@@ -46,7 +46,10 @@ namespace CoffeeShop.Models
         Ingredient newIngredient = (Ingredient) otherIngredient;
         return this.GetId().Equals(newIngredient.GetId());
       }
-
+    }
+    public override int GetHashCode()
+    {
+      return this.GetId().GetHashCode();
     }
     public void Save()
     {
@@ -80,5 +83,29 @@ namespace CoffeeShop.Models
       }
     }
 
+    public void addAmount(int newAmount)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"INSERT INTO ingedients WHERE drink_id = @drink_id AND WHERE inventory_id = @inventory_id (amount) VALUES (@amount)";
+
+      MySqlParameter drink_id = new MySqlParameter();
+      drink_id.ParameterName = "@drink_id";
+      drink_id.Value = _drinkId;
+      cmd.Parameters.Add(drink_id);
+
+      MySqlParameter inventory_id = new MySqlParameter();
+      inventory_id.ParameterName = "@inventory_id";
+      inventory_id.Value = _inventoryId;
+      cmd.Parameters.Add(drink_id);
+
+      MySqlParameter amount = new MySqlParameter();
+      amount.ParameterName = "@amount";
+      amount.Value = newAmount;
+      cmd.Parameters.Add(drink_id);
+
+    }
   }
 }

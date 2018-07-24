@@ -40,7 +40,10 @@ namespace CoffeeShop.Models
         Inventory newInventory = (Inventory) otherInventory;
         return this.GetId().Equals(newInventory.GetId());
       }
-
+    }
+    public override int GetHashCode()
+    {
+      return this.GetId().GetHashCode();
     }
     public void Save()
     {

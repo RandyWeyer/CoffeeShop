@@ -10,7 +10,7 @@ namespace CoffeeShop.Controllers
     [HttpGet("/drinks")]
     public ActionResult Index()
     {
-      List<Drinks> all = Drinks.GetAll();
+      List<Drink> all = Drink.GetAll();
       return View(Drink.GetAll());
     }
 
