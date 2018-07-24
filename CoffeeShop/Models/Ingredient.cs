@@ -44,7 +44,11 @@ namespace CoffeeShop.Models
       else
       {
         Ingredient newIngredient = (Ingredient) otherIngredient;
-        return this.GetId().Equals(newIngredient.GetId());
+        bool idEquality = (this.GetId() == newIngredient.GetId());
+        bool drinkEquality = (this.GetDrinkId() == newIngredient.GetDrinkId());
+        bool inventoryEquality = (this.GetInventoryId() == newIngredient.GetInventoryId());
+        bool amountEquality = (this.GetAmount() == newIngredient.GetAmount());
+        return (idEquality && drinkEquality && inventoryEquality && amountEquality);
       }
     }
     public override int GetHashCode()
@@ -89,23 +93,30 @@ namespace CoffeeShop.Models
       conn.Open();
 
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"INSERT INTO ingedients WHERE drink_id = @drink_id AND WHERE inventory_id = @inventory_id (amount) VALUES (@amount)";
+      cmd.CommandText = @"UPDATE ingredients SET amount=@amount WHERE drink_id=@drink_id AND inventory_id=@inventory_id;";
 
       MySqlParameter drink_id = new MySqlParameter();
       drink_id.ParameterName = "@drink_id";
-      drink_id.Value = _drinkId;
+      drink_id.Value = this._drinkId;
       cmd.Parameters.Add(drink_id);
 
       MySqlParameter inventory_id = new MySqlParameter();
       inventory_id.ParameterName = "@inventory_id";
-      inventory_id.Value = _inventoryId;
-      cmd.Parameters.Add(drink_id);
+      inventory_id.Value = this._inventoryId;
+      cmd.Parameters.Add(inventory_id);
 
       MySqlParameter amount = new MySqlParameter();
       amount.ParameterName = "@amount";
       amount.Value = newAmount;
-      cmd.Parameters.Add(drink_id);
+      cmd.Parameters.Add(amount);
 
+      cmd.ExecuteNonQuery();
+      _amount = newAmount;
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
     }
   }
 }
