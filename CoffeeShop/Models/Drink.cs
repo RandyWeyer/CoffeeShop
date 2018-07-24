@@ -216,7 +216,7 @@ namespace CoffeeShop.Models
     {
       MySqlConnection conn = DB.Connection();
       conn.Open();
-      var cmd = MySqlCommand() as MySqlCommand;
+      var cmd = conn.CreateCommand() as MySqlCommand;
       cmd.CommandText = @"UPDATE inventories
       JOIN ingredients ON inventories.id = ingredients.inventory_id
       JOIN drinks ON drinks.id = ingredients.drink_id
