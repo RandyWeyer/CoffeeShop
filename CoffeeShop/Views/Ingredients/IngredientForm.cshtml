@@ -2,6 +2,9 @@
 @{
   Layout = "_Layout";
 }
+<head>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
 
 @using CoffeeShop.Models;
 
@@ -17,19 +20,32 @@
   }
 </select><br>
 
-
-
-
   <label for="Item">Select Ingredients</label>
   <select class="selectItem" name="item">
-    @foreach (var item in @Model["inventories"])
+    @foreach (var items in @Model["inventories"])
     {
-    <option value="@item.GetId()">@item.GetItem()</option>
+    <option value="@items.GetId()">@items.GetItem()</option>
     }
   </select>
 
   <label for="amount">Enter amount</label>
-  <input id="amount" name="amount" type="number" required>  <button type ="click">Add more Inventory</button>
+  <input id="amount" name="amount" type="number" required><br>
+
+
+  <!-- <button type ="click">Add more Inventory</button> -->
+
+<!-- <a href="/ingredients/new" class="addMore" id="addMore">Add More</a>
+<script type="text/javascript">
+
+  $("#addMore").append();
+  $(document).ready(function() {
+    $("a.addMore").click(function(event) {
+      event.preventDefault();
+      $("form#secret-form input").val(this.id);
+      $("form#secret-form").submit();
+    })
+  })
+</script> -->
 
   <br><br>
   <button type="submit">Submit</button>
