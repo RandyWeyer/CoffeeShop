@@ -44,9 +44,16 @@ namespace CoffeeShop.Models
       else
       {
         Ingredient newIngredient = (Ingredient) otherIngredient;
-        return this.GetId().Equals(newIngredient.GetId());
+        bool idEquality = (this.GetId() == newIngredient.GetId());
+        bool drinkEquality = (this.GetDrinkId() == newIngredient.GetDrinkId());
+        bool inventoryEquality = (this.GetInventoryId() == newIngredient.GetInventoryId());
+        bool amountEquality = (this.GetAmount() == newIngredient.GetAmount());
+        return (idEquality && drinkEquality && inventoryEquality && amountEquality);
       }
-
+    }
+    public override int GetHashCode()
+    {
+      return this.GetId().GetHashCode();
     }
     public void Save()
     {
@@ -79,6 +86,93 @@ namespace CoffeeShop.Models
         conn.Dispose();
       }
     }
+    public static Ingredient Find(int id)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"SELECT * FROM ingredients WHERE id = (@searchId);";
 
+      MySqlParameter searchId = new MySqlParameter();
+      searchId.ParameterName = "@searchId";
+      searchId.Value = id;
+      cmd.Parameters.Add(searchId);
+
+      var rdr = cmd.ExecuteReader() as MySqlDataReader;
+      int ingredientId = 0;
+      int drinkId = 0;
+      int inventoryId = 0;
+      int amount = 0;
+
+      while(rdr.Read())
+      {
+        ingredientId = rdr.GetInt32(0);
+        drinkId = rdr.GetInt32(1);
+        inventoryId = rdr.GetInt32(2);
+        amount = rdr.GetInt32(3);
+      }
+      Ingredient newDrink = new Ingredient(drinkId, inventoryId, amount, ingredientId);
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+      return newDrink;
+    }
+    public static List<Ingredient> GetAll()
+    {
+      List<Ingredient> allDrinks = new List<Ingredient> {};
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"SELECT * FROM ingredients;";
+      var rdr = cmd.ExecuteReader() as MySqlDataReader;
+      while(rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        int drinkId = rdr.GetInt32(1);
+        int inventoryId = rdr.GetInt32(2);
+        int amount = rdr.GetInt32(3);
+        Ingredient newDrink = new Ingredient(drinkId, inventoryId, amount, id);
+        allDrinks.Add(newDrink);
+      }
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+      return allDrinks;
+    }
+    public void addAmount(int newAmount)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"UPDATE ingredients SET amount=@amount WHERE drink_id=@drink_id AND inventory_id=@inventory_id;";
+
+      MySqlParameter drink_id = new MySqlParameter();
+      drink_id.ParameterName = "@drink_id";
+      drink_id.Value = this._drinkId;
+      cmd.Parameters.Add(drink_id);
+
+      MySqlParameter inventory_id = new MySqlParameter();
+      inventory_id.ParameterName = "@inventory_id";
+      inventory_id.Value = this._inventoryId;
+      cmd.Parameters.Add(inventory_id);
+
+      MySqlParameter amount = new MySqlParameter();
+      amount.ParameterName = "@amount";
+      amount.Value = newAmount;
+      cmd.Parameters.Add(amount);
+
+      cmd.ExecuteNonQuery();
+      _amount = newAmount;
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+    }
   }
 }
