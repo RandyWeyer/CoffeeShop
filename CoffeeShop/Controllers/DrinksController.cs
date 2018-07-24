@@ -5,28 +5,28 @@ using System;
 
 namespace CoffeeShop.Controllers
 {
-  public class DrinksController : Controller
-  {
-    [HttpGet("/drinks")]
-    public ActionResult Index()
-    {
-      List<Drinks> all = Drinks.GetAll();
-      return View(Drink.GetAll());
-    }
-
-    [HttpPost("/drinks")]
-    public ActionResult CollectInfo(string newDrink)
-    {
-      Drink newDrink = new Drink(newDrink);
-      newDrink.Save();
-      return RedirectToAction("Index");
-    }
-    [HttpGet("/drinks/new")]
-    public ActionResult CreateForm()
-    {
-      return View(Drink.GetAll());
-    }
-
-
-  }
+  // public class DrinksController : Controller
+  // {
+  //   [HttpGet("/drinks")]
+  //   public ActionResult Index()
+  //   {
+  //     List<Drinks> all = Drinks.GetAll();
+  //     return View(Drink.GetAll());
+  //   }
+  //
+  //   [HttpPost("/drinks")]
+  //   public ActionResult CollectInfo(Drink newDrink)
+  //   {
+  //     Drink newDrink = new Drink(newDrink);
+  //     newDrink.Save();
+  //     return RedirectToAction("Index");
+  //   }
+  //   [HttpGet("/drinks/new")]
+  //   public ActionResult CreateForm()
+  //   {
+  //     return View(Drink.GetAll());
+  //   }
+  //
+  // 
+  // }
 }
