@@ -8,9 +8,9 @@
 @if (Model.Count != 0)
 {
   <ol>
-    @foreach (var drink in Model)
+    @foreach (var item in Model)
     {
-      <li>@drink.GetItem(), @drink.GetItemAmount()</li>
+      <li>@item.GetItem(), @item.GetItemAmount()</li>
     }
   </ol>
 }
