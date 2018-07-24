@@ -21,7 +21,7 @@
 //       newIngredient.Save();
 //       return RedirectToAction("Index");
 //     }
-//     [HttpGet("/inventory/new")]
+//     [HttpGet("/ingredient/new")]
 //     public ActionResult CreateForm()
 //     {
 //       return View(Ingredient.GetAll());

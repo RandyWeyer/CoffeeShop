@@ -1,0 +1,14 @@
+@{
+  Layout = "_Layout";
+}
+<h2>Add an Inventory Item</h2>
+<hr />
+<form  action="/inventory" method="post">
+  <label for="item">New item:</label>
+  <input type="text" name="item" required>
+  <label for="itemAmount">Quantity:</label>
+  <input type="text" name="itemAmount" required>
+
+  <button type="submit" name="button">Submit</button>
+
+</form>
