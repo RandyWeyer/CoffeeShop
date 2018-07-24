@@ -5,7 +5,7 @@ using System;
 
 namespace CoffeeShop.Controllers
 {
-  public class DrinkController : Controller
+  public class DrinksController : Controller
   {
     [HttpGet("/drinks")]
     public ActionResult Index()
@@ -29,3 +29,4 @@ namespace CoffeeShop.Controllers
 
 
   }
+}
