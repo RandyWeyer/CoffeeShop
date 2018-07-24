@@ -1,0 +1,36 @@
+
+@{
+  Layout = "_Layout";
+}
+
+@using CoffeeShop.Models;
+
+<h1>Ingredients</h1>
+
+<form action="/ingredients" method="post">
+
+<label for="drink">Select Drink</label>
+<select class="selectDrink" name="drink">
+  @foreach (var drinks in @Model["drinks"])
+  {
+  <option value="@drinks.GetId()">@drinks.GetName()</option>
+  }
+</select><br>
+
+
+
+
+  <label for="Item">Select Ingredients</label>
+  <select class="selectItem" name="item">
+    @foreach (var item in @Model["inventories"])
+    {
+    <option value="@item.GetId()">@item.GetItem()</option>
+    }
+  </select>
+
+  <label for="amount">Enter amount</label>
+  <input id="amount" name="amount" type="number" required>  <button type ="click">Add more Inventory</button>
+
+  <br><br>
+  <button type="submit">Submit</button>
+</form>
