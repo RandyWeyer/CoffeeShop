@@ -82,6 +82,7 @@ namespace CoffeeShop.Models
         conn.Dispose();
       }
     }
+<<<<<<< HEAD
 
     public void addAmount(int newAmount)
     {
@@ -107,5 +108,7 @@ namespace CoffeeShop.Models
       cmd.Parameters.Add(drink_id);
 
     }
+=======
+>>>>>>> inventorycont
   }
 }
