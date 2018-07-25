@@ -15,17 +15,22 @@ nav {
   display: flex;
   list-style: none;
 }
+
 .jumbotron{
   background-image: url(../img/seattle.jpg);
-
   background-size: 50%;
-
-
-
   color: white;
   text-shadow:
 		-1px -1px 0 #000,
 		1px -1px 0 #000,
 		-1px 1px 0 #000,
 		1px 1px 0 #000;
+}
+
+.item-list-btn {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  line-height: 20px;
+  font-size: 20px;
 }

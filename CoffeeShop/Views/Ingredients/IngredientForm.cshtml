@@ -2,9 +2,6 @@
 @{
   Layout = "_Layout";
 }
-<head>
-  <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-</head>
 
 @using CoffeeShop.Models;
 
@@ -18,34 +15,54 @@
   {
   <option value="@drinks.GetId()">@drinks.GetName()</option>
   }
-</select><br>
+</select>
+<br>
 
   <label for="Item">Select Ingredients</label>
-  <select class="selectItem" name="item">
+  <br>
+  <div id="allCurrentItems">
     @foreach (var items in @Model["inventories"])
     {
-    <option value="@items.GetId()">@items.GetItem()</option>
+    <div class="item-div-@items.GetId()">
+      <select>
+        @foreach (var selectItems in @Model["inventories"])
+        {
+          <option value="@selectItems.GetId()"
+          @if (selectItems==items)
+          {
+            @:selected
+          }
+          >@selectItems.GetItem()</option>
+        }
+      </select>
+      <label for="amount">Amount</label>
+      <input id="amount-@items.GetId()" name="amount-@items.GetId()" type="number" required>
+      <button type="button" class="btn btn-danger item-list-btn btn-remove" id="btn-remove-@items.GetId()">-</button>
+    </div>
     }
-  </select>
+  </div>
 
-  <label for="amount">Enter amount</label>
-  <input id="amount" name="amount" type="number" required><br>
+<button type="button" class="btn btn-success item-list-btn" id="addMore">+</button>
 
 
-  <!-- <button type ="click">Add more Inventory</button> -->
-
-<!-- <a href="/ingredients/new" class="addMore" id="addMore">Add More</a>
 <script type="text/javascript">
 
-  $("#addMore").append();
   $(document).ready(function() {
-    $("a.addMore").click(function(event) {
+    var newItemId = 500;
+    $("#addMore").click(function(event) {
       event.preventDefault();
-      $("form#secret-form input").val(this.id);
-      $("form#secret-form").submit();
-    })
-  })
-</script> -->
+      newItemId += 1;
+      $("#allCurrentItems").append("<div class='new-item-div'><strong>New Ingredient: </strong><input><label for='amount'> Amount </label><input id='amount-" + newItemId + "' name='amount-" + newItemId + "' type='number' required><button type='button' class='btn btn-danger item-list-btn btn-remove'>-</button><br></div>"
+      );
+    });
+
+      $("#allCurrentItems").on('click', ".btn-remove", function(){
+        $(this).parent().remove();
+        console.log("hey");
+      });
+
+  });
+</script>
 
   <br><br>
   <button type="submit">Submit</button>
