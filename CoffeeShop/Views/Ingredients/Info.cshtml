@@ -1,0 +1,53 @@
+@{
+  Layout = "_Layout";
+}
+@using CoffeeShop.Models;
+
+
+
+<h1>@Model["thisdrink"].GetName()</h1>
+<ul>
+  @foreach(Inventory item in @Model["inventories"])
+  {
+  <li>@item.GetItem() ||</li>
+  }
+</ul>
+<ul>
+  @foreach(Ingredient item in @Model["ingredients"])
+  {
+  <li>@item.GetAmount()</li>
+  }
+</ul>
+<div class="col-md-6">
+
+
+  <thead>
+  <tr>
+      @foreach(Inventory item in @Model["inventories"])
+      {
+        <tr>
+      <th scope="col">@item.GetItem()</th>
+    </tr>
+      }
+
+
+</tr>
+  </thead>
+</table>
+</div>
+<div class="col-md-6">
+
+  <thead>
+  <tr>
+    @foreach(Ingredient item in @Model["ingredients"])
+    {
+      <tr>
+    <th scope="col">@item.GetAmount()</th>
+    
+
+    </tr>
+    }
+
+</tr>
+  </thead>
+</table></div>

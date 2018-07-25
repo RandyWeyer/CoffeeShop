@@ -6,13 +6,9 @@
 @if (Model.Count != 0)
 {
   <ol>
-    @foreach (var item in Model["drinks"])
+    @foreach (var drink in Model["drinks"])
     {
-      <li>@item.GetName() Units| <a href="/inventory" class="deleteAction" id="@item.GetId()">Delete</a></li>
-    }
-    @foreach (var item in Model["inventories"])
-    {
-      <li>@item.GetItem()</li>
+      <li>@drink.GetName() || <a href="/ingredients/@drink.GetId()/info" class="deleteAction" >View Ingredients</a></li>
     }
 
  </ol>

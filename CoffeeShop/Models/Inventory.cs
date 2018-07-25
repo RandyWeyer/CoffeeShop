@@ -178,6 +178,33 @@ namespace CoffeeShop.Models
 
       cmd.ExecuteNonQuery();
     }
+
+    public static List<Inventory> GetInventory(int drink_id)
+    {
+      List<Inventory> allIngredients = new List<Inventory> {};
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"SELECT * FROM inventories WHERE drink_id=@drinkID;";
+
+      cmd.Parameters.Add(new MySqlParameter("@drinkID", drink_id));
+      var rdr = cmd.ExecuteReader() as MySqlDataReader;
+      while(rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        string item = rdr.GetString(1);
+        int itemAmount = rdr.GetInt32(2);
+        Inventory newInventory = new Inventory(item, itemAmount, id);
+        allIngredients.Add(newInventory);
+      }
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+      return allIngredients;
+
+    }
     public void SubtractFromInventory(int drink_id)
     {
       MySqlConnection conn = DB.Connection();
