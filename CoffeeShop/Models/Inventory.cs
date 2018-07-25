@@ -226,5 +226,32 @@ namespace CoffeeShop.Models
         conn.Dispose();
       }
     }
+    //hk
+    public void Restock(int newItemAmount)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"UPDATE inventories SET item_amount = (@newItemAmount + inventories.item_amount) WHERE id =@InventoryId;";
+
+      MySqlParameter inventoryIdParameter = new MySqlParameter();
+      inventoryIdParameter.ParameterName = "@InventoryId";
+      inventoryIdParameter.Value = _id;
+      cmd.Parameters.Add(inventoryIdParameter);
+
+      MySqlParameter restockAmount = new MySqlParameter();
+      restockAmount.ParameterName = "@newItemAmount";
+      restockAmount.Value = newItemAmount;
+      cmd.Parameters.Add(restockAmount);
+
+      cmd.ExecuteNonQuery();
+      _itemAmount = newItemAmount;
+
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+    }
   }
 }

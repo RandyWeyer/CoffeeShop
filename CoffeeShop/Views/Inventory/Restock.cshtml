@@ -1,0 +1,14 @@
+@{
+  Layout = "_Layout";
+}
+<h1>@Model.GetItem()</h1>
+<h2>Restock an Inventory Item</h2>
+<p>Current Amount:</p>
+<form action="/inventory/@Model.GetId()/restock" method="post">
+
+  <label for="itemAmount">Restock Amount:</label>
+  <input type="number" name="itemAmount" required>
+
+  <button type="submit" name="button">Submit</button>
+
+</form>
