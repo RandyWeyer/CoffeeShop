@@ -126,39 +126,38 @@ namespace CoffeeShop.Models
         }
         return allDrinks;
     }
-    public static Drink MakeDrink()
+    public void MakeDrink()
     {
       MySqlConnection conn = DB.Connection();
       conn.Open();
 
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"SELECT * FROM ingredients WHERE drink_id = @thisId;";
+      cmd.CommandText = @"SELECT inventory_id FROM ingredients WHERE drink_id = @thisId;";
 
       MySqlParameter thisId = new MySqlParameter();
       thisId.ParameterName  = "@thisId";
-      thisId.Value = id;
+      thisId.Value = _id;
       cmd.Parameters.Add(thisId);
 
       var rdr = cmd.ExecuteReader() as MySqlDataReader;
 
-      int drinkId = 0;
-      string drinkName = "";
-
-
+      int inventoryId = 0;
+      List<int> inventoryIds = new List<int>{};
       while (rdr.Read())
       {
-        drinkId = rdr.GetInt32(0);
-        drinkName = rdr.GetString(1);
+        inventoryId = rdr.GetInt32(0);
+        inventoryIds.Add(inventoryId);
       }
 
-      Drink foundDrink = new Drink(drinkName, drinkId);
-
+      foreach(int id in inventoryIds)
+      {
+        Inventory.Find(id).SubtractFromInventory(_id);
+      }
       conn.Close();
       if (conn != null)
       {
         conn.Dispose();
       }
-      return foundDrink;
 
     }
     public static Drink Find(int id)
