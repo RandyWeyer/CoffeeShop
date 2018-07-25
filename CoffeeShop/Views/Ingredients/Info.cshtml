@@ -4,20 +4,29 @@
 @using CoffeeShop.Models;
 
 
+<div style="width:100%;">
 
 <h1>@Model["thisdrink"].GetName()</h1>
+<div style="float:left; width20%;">
+
 <ul>
   @foreach(Inventory item in @Model["inventories"])
   {
-  <li>@item.GetItem() ||</li>
+  <li>@item.GetItem() </li>
   }
 </ul>
+</div>
+<div style="float:left; width80%;">
+
 <ul>
   @foreach(Ingredient item in @Model["ingredients"])
   {
-  <li>@item.GetAmount()</li>
+  <li>@item.GetAmount() units</li>
   }
 </ul>
+</div>
+</div>
+<!--
 <div class="col-md-6">
 
 
@@ -43,11 +52,10 @@
     {
       <tr>
     <th scope="col">@item.GetAmount()</th>
-    
 
     </tr>
     }
 
 </tr>
   </thead>
-</table></div>
+</table></div> -->

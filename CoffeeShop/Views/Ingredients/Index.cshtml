@@ -8,8 +8,26 @@
   <ol>
     @foreach (var drink in Model["drinks"])
     {
-      <li>@drink.GetName() || <a href="/ingredients/@drink.GetId()/info" class="deleteAction" >View Ingredients</a></li>
+      <li>@drink.GetName() ||
+      <a href="/ingredients/@drink.GetId()/info" class="viewIngredients" >View Ingredients</a>
+      ||
+      <a href="/ingredients" class="deleteAction" id="@drink.GetId()">Delete</a>
+      </li>
     }
 
- </ol>
+  </ol>
 }
+<form id="secret-form" action="/drinks/delete" method="post">
+  <input type="hidden" name="drinkId" value="">
+</form>
+
+<script type="text/javascript">
+$("#secret-form").hide();
+$(document).ready(function() {
+  $("a.deleteAction").click(function(event) {
+    event.preventDefault();
+    $("form#secret-form input").val(this.id);
+    $("form#secret-form").submit();
+  })
+})
+</script>
