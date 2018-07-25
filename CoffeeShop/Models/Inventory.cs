@@ -186,7 +186,7 @@ namespace CoffeeShop.Models
       cmd.CommandText = @"UPDATE inventories
       JOIN ingredients ON (inventories.id = ingredients.inventory_id)
       JOIN drinks ON (drinks.id = ingredients.drink_id)
-      SET inventories.item_amount=(inventories.item_amount-ingredients.amount)
+      SET inventories.item_amount=(inventories.item_amount - ingredients.amount)
       WHERE inventories.id = @InventoryId AND drinks.id = @DrinkId;";
 
       cmd.Parameters.Add(new MySqlParameter("@InventoryId", _id));

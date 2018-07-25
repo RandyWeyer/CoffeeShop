@@ -126,6 +126,41 @@ namespace CoffeeShop.Models
         }
         return allDrinks;
     }
+    public static Drink MakeDrink()
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"SELECT * FROM ingredients WHERE drink_id = @thisId;";
+
+      MySqlParameter thisId = new MySqlParameter();
+      thisId.ParameterName  = "@thisId";
+      thisId.Value = id;
+      cmd.Parameters.Add(thisId);
+
+      var rdr = cmd.ExecuteReader() as MySqlDataReader;
+
+      int drinkId = 0;
+      string drinkName = "";
+
+
+      while (rdr.Read())
+      {
+        drinkId = rdr.GetInt32(0);
+        drinkName = rdr.GetString(1);
+      }
+
+      Drink foundDrink = new Drink(drinkName, drinkId);
+
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+      return foundDrink;
+
+    }
     public static Drink Find(int id)
     {
       MySqlConnection conn = DB.Connection();

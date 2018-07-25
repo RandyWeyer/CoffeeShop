@@ -17,8 +17,19 @@ namespace CoffeeShop.Controllers
     }
 
     [HttpPost("/order")]
-    public ActionResult AddDrink()
+    public ActionResult SubtractAmount(int drink_id)
     {
-      Drink drink = Drink.Find(int.Parse(Request.Form["drink-id"]));
-      return RedirectToAction("Index", new);
+      Inventory coffee = Inventory.Find(4);
+      Console.Write("Drink Id: ");
+      Console.WriteLine(drink_id);
+      Console.Write("Coffee Id: ");
+      Console.WriteLine(coffee.GetId());
+      Inventory milk = Inventory.Find(5);
+      // Drink currentDrink = Drink.Find(int.Parse(Request.Form["drink-id"]));
+      coffee.SubtractFromInventory(drink_id);
+      milk.SubtractFromInventory(drink_id);
+
+      return RedirectToAction("Index");
     }
+  }
+}

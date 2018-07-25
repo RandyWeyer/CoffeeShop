@@ -8,7 +8,7 @@
 <hr />
 @if (@Model["allDrinks"].Count != 0)
 {
-  <h4>Here are all the authors:</h4>
+  <h4>Here are all the drinks for the order:</h4>
   <ul>
     @foreach (var drink in @Model["allDrinks"])
     {
@@ -19,11 +19,18 @@
 <h4>Add a drink to this order:</h4>
 <form action='/order' method='post'>
   <label for='drink-id'>Select a drink:</label>
-  <select id='drink-id' name='drink-id' type='text'>
+  <select id='drink-id' name='drink_id' type='text'>
     @foreach (var drink in @Model["allDrinks"])
     {
       <option value='@drink.GetId()'>@drink.GetName()</option>
     }
   </select>
-  <button type='submit'>Add</button>
+  <button type="submit">Add</button>
 </form>
+
+<ul>
+  @foreach(var item in Inventory.GetAll())
+  {
+    <li>@item.GetItem(): @item.GetItemAmount()</li>
+  }
+</ul>
