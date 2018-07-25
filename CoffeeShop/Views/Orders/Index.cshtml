@@ -3,19 +3,6 @@
 }
 @using CoffeeShop.Models;
 
-<h1>Add drinks to this order</h1>
-<h2>Order:</h2>
-<hr />
-@if (@Model["allDrinks"].Count != 0)
-{
-  <h4>Here are all the drinks for the order:</h4>
-  <ul>
-    @foreach (var drink in @Model["allDrinks"])
-    {
-      <li>@drink.GetName()</li>
-    }
-  </ul>
-}
 <h4>Add a drink to this order:</h4>
 <form action='/order' method='post'>
   <label for='drink-id'>Select a drink:</label>

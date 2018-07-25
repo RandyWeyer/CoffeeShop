@@ -15,18 +15,6 @@ namespace CoffeeShop.Controllers
       model.Add("allDrinks", allDrinks);
       return View(model);
     }
-
-    // [HttpPost("/order")]
-    // public ActionResult SubtractAmount(int drink_id)
-    // {
-    //   Inventory coffee = Inventory.Find(4);
-    //
-    //   Inventory milk = Inventory.Find(5);
-    //   coffee.SubtractFromInventory(drink_id);
-    //   milk.SubtractFromInventory(drink_id);
-    //
-    //   return RedirectToAction("Index");
-    // }
     [HttpPost("/order")]
     public ActionResult SubtractAmount(int drink_id)
     {
