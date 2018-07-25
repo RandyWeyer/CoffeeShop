@@ -178,6 +178,26 @@ namespace CoffeeShop.Models
 
       cmd.ExecuteNonQuery();
     }
+    public void SubtractFromInventory(int drink_id)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"UPDATE inventories
+      JOIN ingredients ON (inventories.id = ingredients.inventory_id)
+      JOIN drinks ON (drinks.id = ingredients.drink_id)
+      SET inventories.item_amount=(inventories.item_amount-ingredients.amount)
+      WHERE inventories.id = @InventoryId AND drinks.id = @DrinkId;";
 
+      cmd.Parameters.Add(new MySqlParameter("@InventoryId", _id));
+      cmd.Parameters.Add(new MySqlParameter("@DrinkId", drink_id));
+
+      cmd.ExecuteNonQuery();
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+    }
   }
 }

@@ -31,5 +31,21 @@ namespace CoffeeShop.Tests
       newInventory.AddDrink(newDrink);
       newCoffee.AddDrink(newDrink);
     }
+    [TestMethod]
+    public void ModifyInventory()
+    {
+      Drink newDrink = new Drink("Latte");
+      newDrink.Save();
+      Inventory newInventory = new Inventory("Milk", 1000);
+      newInventory.Save();
+      // newDrink.AddInventory(newInventory);
+      Ingredient newIngredients = new Ingredient(newDrink.GetId(),newInventory.GetId(),300);
+      newIngredients.Save();
+      newInventory.SubtractFromInventory(newDrink.GetId());
+      newInventory = Inventory.Find(newInventory.GetId());
+      Console.WriteLine(newIngredients.GetAmount());
+
+      Assert.AreEqual(newInventory.GetItemAmount(), 700);
+    }
   }
 }
