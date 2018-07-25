@@ -4,6 +4,7 @@
 }
 
 <div class="jumbotron">
+  <!-- <img src="/img/seattle.jpg" alt=""> -->
   <h1>Coffee Shop</h1>
   <h4>Organize Stock</h4>
 </div>
@@ -11,25 +12,27 @@
 <div class="container">
   <div class="row">
 
-    <form name="coffee-order">
-    <div class="col-lg-6">
-    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-      <label class="btn btn-outline-dark active">
-        <input type="radio" name="options" id="ounce-8" autocomplete="off" checked> 8 Oz.
-      </label>
-      <label class="btn btn-outline-dark">
-        <input type="radio" name="options" id="ounce-12" autocomplete="off"> 12 Oz.
-      </label>
-      <label class="btn btn-outline-dark">
-        <input type="radio" name="options" id="ounce-16" autocomplete="off"> 16 Oz.
-      </label>
-    </div>
-  </div>
-  <div class="col-lg-5">
-    <img src="~/img/coffee-sizes-612x612.jpg" alt="Coffee Sizes">
-  </div>
-    <!-- End of Form -->
-  </form>
+    <h4 class="col-md-12">User Login:</h4>
+
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Username</span>
+        </div>
+        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+      </div>
+          <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Password</span>
+        </div>
+        <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+      </div>
+      <a href="/menu">
+        <button class="btn btn-secondary">Submit</button>
+      </a>
+
+
+
     <!-- End of Row -->
   </div>
   <!-- End of Container -->

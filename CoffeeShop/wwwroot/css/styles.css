@@ -1,0 +1,31 @@
+.container-padding {
+  margin: 2px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  background-color: #eee;
+  padding-left: 30px;
+}
+
+nav {
+  display: flex;
+  list-style: none;
+}
+.jumbotron{
+  background-image: url(../img/seattle.jpg);
+
+  background-size: 50%;
+
+
+
+  color: white;
+  text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+}

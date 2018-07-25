@@ -175,5 +175,13 @@ namespace CoffeeShop.Models
         conn.Dispose();
       }
     }
+    // public List<Ingredient> GetIngredients()
+    // {
+    //   List<Ingredient> allIngredients = new List<Ingredient> {};
+    //   MySqlConnection conn = DB.Connection();
+    //   conn.Open();
+    //   var cmd = conn.CreateCommand() as MySqlCommand;
+    //   COMD.CommandText = @"S"
+    // }
   }
 }
