@@ -230,7 +230,17 @@ namespace CoffeeShop.Models
       conn.Dispose();
     }
     return allIngredients;
+    }
+  // public void Delete()
+  // {
+  //   MySqlConnection conn = DB.Connection();
+  //   conn.Open();
+  //   var cmd = conn.CreateCommand() as MySqlCommand;
+  //   cmd.CommandText = @"DELETE FROM ingredients WHERE drink_id = @drinkId;";
+  //
+  //   MySqlParameter
+  // }
     //hk
-  }
+
   }
 }
