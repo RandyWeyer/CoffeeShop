@@ -12,7 +12,9 @@
   <ol>
     @foreach (var item in Model)
     {
-      <li>@item.GetItem(), @item.GetItemAmount() Units| <a href="/inventory" class="deleteAction" id="@item.GetId()">Delete</a></li>
+      <li>@item.GetItem(), @item.GetItemAmount() Units
+        ||<a href="/inventory/@item.GetId()/restock" class="restock" id="@item.GetId()">Restock</a>
+        ||<a href="/inventory" class="deleteAction" id="@item.GetId()">Delete</a></li>
  }
  </ol>
 }

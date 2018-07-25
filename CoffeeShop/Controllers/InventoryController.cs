@@ -32,5 +32,19 @@ namespace CoffeeShop.Controllers
      Inventory.Find(itemId).Delete();
      return RedirectToAction("Index");
    }
+   [HttpGet("/inventory/{id}/restock")]
+   public ActionResult Restock(int id)
+   {
+     Inventory thisInventory = Inventory.Find(id);
+     return View(thisInventory);
+   }
+   [HttpPost("inventory/{id}/restock")]
+   public ActionResult AddStock(int id)
+   {
+     Inventory thisInventory = Inventory.Find(id);
+     thisInventory.Restock(int.Parse(Request.Form["itemAmount"]));
+     return RedirectToAction("Index");
+   }
+
   }
 }
