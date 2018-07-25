@@ -160,6 +160,40 @@ namespace CoffeeShop.Models
       }
       return foundDrink;
     }
+
+    public List<Inventory> GetInventory()
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"SELECT inventories.* FROM drinks
+      JOIN ingredients ON (drinks.id = ingredients.drink_id)
+      JOIN inventories ON (ingredients.inventory_id = inventories.id)
+      WHERE drinks.id = @drinkId;";
+
+      MySqlParameter itemIdParameter = new MySqlParameter();
+      itemIdParameter.ParameterName = "@drinkId";
+      itemIdParameter.Value = _id;
+      cmd.Parameters.Add(itemIdParameter);
+
+      MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+      List<Inventory> inventories = new List<Inventory>{};
+
+      while(rdr.Read())
+      {
+        int inventoryId = rdr.GetInt32(0);
+        string inventoryName = rdr.GetString(1);
+        Inventory newInventory = new Inventory(inventoryName, inventoryId);
+        inventories.Add(newInventory);
+      }
+
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+      return inventories;
+    }
     public void Edit(string newDrink)
     {
       MySqlConnection conn = DB.Connection();

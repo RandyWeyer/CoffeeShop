@@ -80,7 +80,7 @@ namespace CoffeeShop.Models
 
       cmd.ExecuteNonQuery();
       _id = (int) cmd.LastInsertedId;
-    
+
       conn.Close();
       if (conn != null)
       {
@@ -175,13 +175,62 @@ namespace CoffeeShop.Models
         conn.Dispose();
       }
     }
-    // public List<Ingredient> GetIngredients()
-    // {
-    //   List<Ingredient> allIngredients = new List<Ingredient> {};
-    //   MySqlConnection conn = DB.Connection();
-    //   conn.Open();
-    //   var cmd = conn.CreateCommand() as MySqlCommand;
-    //   COMD.CommandText = @"S"
-    // }
+    public static List<Ingredient> GetIngredients(int drink_id)
+    {
+      List<Ingredient> allIngredients = new List<Ingredient> {};
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"SELECT * FROM ingredients WHERE drink_id=@drinkID;";
+
+      cmd.Parameters.Add(new MySqlParameter("@drinkID", drink_id));
+      var rdr = cmd.ExecuteReader() as MySqlDataReader;
+      while(rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        int drinkId = rdr.GetInt32(1);
+        int inventoryId = rdr.GetInt32(2);
+        int amount = rdr.GetInt32(3);
+        Ingredient newDrink = new Ingredient(drinkId, inventoryId, amount, id);
+        allIngredients.Add(newDrink);
+      }
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+      return allIngredients;
+
+    }
+
+
+
+  //hk
+  public static List<Inventory> GetInventory(int inventory_id)
+  {
+    List<Inventory> allIngredients = new List<Inventory> {};
+    MySqlConnection conn = DB.Connection();
+    conn.Open();
+    var cmd = conn.CreateCommand() as MySqlCommand;
+    cmd.CommandText = @"SELECT * FROM inventories WHERE inventory_id=@inventoryID;";
+
+    cmd.Parameters.Add(new MySqlParameter("@inventoryID", inventory_id));
+    var rdr = cmd.ExecuteReader() as MySqlDataReader;
+    while(rdr.Read())
+    {
+      int id = rdr.GetInt32(0);
+      string item = rdr.GetString(1);
+      int itemAmount = rdr.GetInt32(2);
+      Inventory newInventory = new Inventory(item, itemAmount, id);
+      allIngredients.Add(newInventory);
+    }
+    conn.Close();
+    if (conn != null)
+    {
+      conn.Dispose();
+    }
+    return allIngredients;
+    //hk
+  }
   }
 }
