@@ -10,7 +10,7 @@ namespace CoffeeShop.Tests
   {
     public void Dispose()
     {
-      // Inventoryt.DeleteAll();
+      // Inventory.DeleteAll();
     }
     public InventorytTests()
     {
