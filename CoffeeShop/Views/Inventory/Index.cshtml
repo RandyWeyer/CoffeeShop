@@ -5,19 +5,33 @@
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <h1>Our current inventory:</h1>
-<hr />
+
+<table class="table table-hover ">
+  <thead>
+    <tr>
+      <th scope="col">Inventory</th>
+      <th scope="col">test</th>
+    </tr>
+  </thead>
+  <tbody>
 
 @if (Model.Count != 0)
 {
-  <ol>
     @foreach (var item in Model)
     {
-      <li>@item.GetItem(), @item.GetItemAmount() Units
-        ||<a href="/inventory/@item.GetId()/restock" class="restock" id="@item.GetId()">Restock</a>
-        ||<a href="/inventory" class="deleteAction" id="@item.GetId()">Delete</a></li>
- }
- </ol>
-}
+      <tr>
+
+      <td>@item.GetItem(), @item.GetItemAmount() Units</td>
+      <td><a href="/inventory/@item.GetId()/restock" class="restock" id="@item.GetId()">Restock</a>
+        | <a href="/inventory" class="deleteAction" id="@item.GetId()">Delete</a></td>
+      </tr>
+
+      }
+      }
+</tbody>
+</table>
+
+
  <form id="secret-form" action="/inventory/delete" method="post">
    <input type="hidden" name="itemId" value="">
  </form>
