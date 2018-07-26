@@ -14,13 +14,12 @@
 nav {
   display: flex;
   list-style: none;
+
 }
 .jumbotron{
   background-image: url(../img/seattle.jpg);
 
   background-size: 50%;
-
-
 
   color: white;
   text-shadow:
@@ -28,8 +27,4 @@ nav {
 		1px -1px 0 #000,
 		-1px 1px 0 #000,
 		1px 1px 0 #000;
-}
-body {
-
-background-color: rgba(0, 0, 0, 1);
 }
