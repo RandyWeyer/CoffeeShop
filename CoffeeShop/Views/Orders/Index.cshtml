@@ -1,18 +1,17 @@
 @{
   Layout = "_Layout";
 }
+<link href="~/css/order.css" rel="stylesheet" type="text/css" media="all">
 @using CoffeeShop.Models;
 
-<h4>Add a drink to this order:</h4>
+<h4>Order A Drink:</h4>
 <form action='/order' method='post'>
-  <label for='drink-id'>Select a drink:</label>
-  <select id='drink-id' name='drink_id' type='text'>
     @foreach (var drink in @Model["allDrinks"])
     {
-      <option value='@drink.GetId()'>@drink.GetName()</option>
+
+      <button type="submit" name="drink_id" value="@drink.GetId()" class="btn-lg btn-outline-primary override" >@drink.GetName()</button>
     }
   </select>
-  <button type="submit">Add</button>
 </form><br>
 <h4>Our Stock:</h4>
 <ul>
