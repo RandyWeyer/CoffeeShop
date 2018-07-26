@@ -1,10 +1,10 @@
 
 @{
   Layout = "_Layout";
+
 }
 
 @using CoffeeShop.Models;
-
 
 <h1>Ingredients</h1>
 
@@ -19,29 +19,34 @@
 </select>
 <br>
 
-  <label for="Item">Select Ingredients</label>
-  <br>
-  <div id="allCurrentItems">
-    @foreach (var items in @Model["inventories"])
+<label for="Item">Select Ingredients</label>
+<br>
+<div id="allCurrentItems">
+  @{
+    int NumberOfIngredients = 0;
+    foreach (var items in @Model["inventories"])
     {
-    <div class="item-div-@items.GetId()">
-      <select>
-        @foreach (var selectItems in @Model["inventories"])
-        {
-          <option value="@selectItems.GetId()"
-          @if (selectItems==items)
+
+      <div class="item-div-@items.GetId()">
+        <select>
+          @foreach (var selectItems in @Model["inventories"])
           {
-            @:selected
+            <option value="@selectItems.GetId()"
+            @if(selectItems==@items)
+            {
+              @:selected
+            }
+            >@selectItems.GetItem()</option>
           }
-          >@selectItems.GetItem()</option>
-        }
-      </select>
-      <label for="amount">Amount</label>
-      <input id="amount-@items.GetId()" name="amount-@items.GetId()" type="number" required>
-      <button type="button" class="btn btn-danger item-list-btn btn-remove" id="btn-remove-@items.GetId()">-</button>
-    </div>
+        </select>
+        <label for="amount">Amount</label>
+        <input id="amount-@items.GetId()" name="amount-@items.GetId()" type="number" value="@items.GetItemAmount()" required>
+        <button type="button" class="btn btn-danger item-list-btn btn-remove" id="btn-remove-@items.GetId()">-</button>
+      </div>
+      NumberOfIngredients++;
     }
-  </div>
+  }
+</div>
 
 <button type="button" class="btn btn-success item-list-btn" id="addMore">+</button>
 
@@ -49,15 +54,16 @@
 <script type="text/javascript">
 
   $(document).ready(function() {
-    var newItemId = 500;
+    var NumberOfIngredients = @NumberOfIngredients;
     $("#addMore").click(function(event) {
       event.preventDefault();
-      newItemId += 1;
-      $("#allCurrentItems").append("<div class='new-item-div'><strong>New Ingredient: </strong><select>@foreach (var selectItems in @Model["inventories"]){<option value='@selectItems.GetId()'>@selectItems.GetItem()</option>}</select><label for='amount'> Amount </label><input id='amount-" + newItemId + "' name='amount-" + newItemId + "' type='number' required><button type='button' class='btn btn-danger item-list-btn btn-remove'>-</button><br></div>"
+      NumberOfIngredients++;
+      $("#allCurrentItems").append("<div class='new-item-div'><strong>New Ingredient: </strong><select>@foreach (var selectItems in @Model["inventories"]){<option value='@selectItems.GetId()'>@selectItems.GetItem()</option>}</select><label for='amount'> Amount </label><input id='amount-" + NumberOfIngredients + "' name='amount-" + NumberOfIngredients + "' type='number' required><button type='button' class='btn btn-danger item-list-btn btn-remove'>-</button><br></div>"
       );
     });
 
       $("#allCurrentItems").on('click', ".btn-remove", function(){
+        NumberOfIngredients--;
         $(this).parent().remove();
       });
 
