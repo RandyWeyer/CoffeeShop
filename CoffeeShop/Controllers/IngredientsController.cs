@@ -11,7 +11,6 @@ namespace CoffeeShop.Controllers
     public ActionResult IngredientForm()
     {
       Dictionary<string,object> model = new Dictionary<string,object>{};
-      // Ingredient newIngredient = new Ingredient(drink, item, amount);
       List<Inventory> allInventories = Inventory.GetAll();
       List<Drink> allDrinks = Drink.GetAll();
       model.Add("drinks", allDrinks);
@@ -23,14 +22,13 @@ namespace CoffeeShop.Controllers
     public ActionResult Index()
     {
       Dictionary<string,object> model = new Dictionary<string,object>{};
-        // Ingredient newIngredient = new Ingredient(drink, item, amount);
-        List<Inventory> allInventories = Inventory.GetAll();
-        List<Drink> allDrinks = Drink.GetAll();
-        List<Ingredient> allIngredients = Ingredient.GetAll();
-        model.Add("drinks", allDrinks);
-        model.Add("inventories", allInventories);
-        model.Add("ingredients", allIngredients);
-        return View(model);
+      List<Inventory> allInventories = Inventory.GetAll();
+      List<Drink> allDrinks = Drink.GetAll();
+      List<Ingredient> allIngredients = Ingredient.GetAll();
+      model.Add("drinks", allDrinks);
+      model.Add("inventories", allInventories);
+      model.Add("ingredients", allIngredients);
+      return View(model);
     }
 
     [HttpPost("/ingredients")]
