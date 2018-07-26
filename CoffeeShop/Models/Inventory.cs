@@ -77,7 +77,7 @@ namespace CoffeeShop.Models
       MySqlConnection conn = DB.Connection();
       conn.Open();
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"SELECT * FROM inventories;";
+      cmd.CommandText = @"SELECT * FROM inventories ORDER BY item asc;";
       var rdr = cmd.ExecuteReader() as MySqlDataReader;
       while(rdr.Read())
       {

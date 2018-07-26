@@ -9,12 +9,12 @@
 <h1>@Model["thisdrink"].GetName()</h1>
 <div style="float:left; width20%;">
 
-<ul>
+<ol>
   @foreach(Inventory item in @Model["inventories"])
   {
   <li>@item.GetItem() </li>
   }
-</ul>
+</ol>
 </div>
 <div style="float:left; width80%;">
 
