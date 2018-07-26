@@ -19,7 +19,7 @@ namespace CoffeeShop.Controllers
     {
       Inventory newInventory = new Inventory(Request.Form["item"], int.Parse(Request.Form["itemAmount"]));
       newInventory.Save();
-      return RedirectToAction("Index");
+      return RedirectToAction("CreateForm");
     }
     [HttpGet("/inventory/new")]
     public ActionResult CreateForm()
