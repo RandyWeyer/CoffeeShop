@@ -15,6 +15,7 @@ namespace CoffeeShop.Controllers
         [HttpGet("/menu")]
         public ActionResult Menu()
         {
+          
             return View();
         }
     }
